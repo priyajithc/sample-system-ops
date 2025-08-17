@@ -5,18 +5,25 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/priyajithc/sample-system.git
-    targetRevision: main
-    path: charts/backend
-    helm:
-      valueFiles:
-        - values-prod.yaml
+  sources:
+    # 1) Chart from your charts repo (Git)
+    - repoURL: https://github.com/priyajithc/sample-system.git
+      targetRevision: main
+      path: charts/backend
+      helm:
+        releaseName: backend
+        valueFiles:
+          - $values/apps/backend/prod/values.yaml   # <- env values from GitOps repo
+    # 2) Values-only source from your GitOps repo
+    - repoURL: https://github.com/priyajithc/sample-system-ops.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: sample-prod
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
-    syncOptions: ["CreateNamespace=true"]
+    syncOptions:
+      - CreateNamespace=true

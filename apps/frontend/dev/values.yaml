@@ -1,6 +1,6 @@
 image:
   repository: docker.io/priyajith/samp-app-frontend
-  tag: "0.1.0-dev"
+  tag: "0.1.0"
 replicaCount: 1
 
 ingress:
