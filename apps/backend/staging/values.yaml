@@ -1,7 +1,13 @@
 image:
-  repository: docker.io/priyajith/samp-app-backend
+  repository: docker.io/priyajith/samp-app-frontend
   tag: "0.1.0"
-replicaCount: 2
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
 
 ingress:
   enabled: true
@@ -12,3 +18,11 @@ ingress:
         - path: /
           pathType: Prefix
   tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+backendServiceName: backend-staging-backend
+backendServicePort: 8080
