@@ -23,6 +23,3 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-backendServiceName: backend-staging-backend
-backendServicePort: 8080

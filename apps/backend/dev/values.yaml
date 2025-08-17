@@ -23,6 +23,3 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-backendServiceName: backend-dev-backend
-backendServicePort: 8080
