@@ -10,12 +10,13 @@ spec:
     targetRevision: main
     path: charts/backend
     helm:
-      valueFiles: [values.yaml]
+      valueFiles:
+        - values-staging.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: sample-staging
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: true
     syncOptions: ["CreateNamespace=true"]
